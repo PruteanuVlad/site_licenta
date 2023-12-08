@@ -7,6 +7,7 @@ import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
 import axios from 'axios';
+import Plot from 'react-plotly.js';
 
 const Nav = styled.div`
 background: #DBE2EF;
@@ -79,7 +80,20 @@ useEffect(() => {
 
     fetchData2();
   }, []); // The empty dependencies array means this effect runs only once after the initial render
+  // Extract x and y values for the plot
+  const xValues = [25.34, 25.82, 26.57, 25.89, 26.12, 25.33, 25.49, 26.18, 26.49, 26.29];
+  const yValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+  // Define the layout for the Plotly chart
+  const layout = {
+    title: 'Grafic temperatură',
+    xaxis: {
+      title: 'Axul central',
+    },
+    yaxis: {
+      title: 'Temperatură (°C)',
+    },
+  };
 
 return (
 	<>
@@ -118,6 +132,24 @@ return (
 	</IconContext.Provider>
 	<p>&emsp; Temperatura: {temperatura}°C</p>
 	<p>&emsp; Umiditate: {umiditate}%</p>
+	<div>
+      {xValues.length > 0 ? (
+        <Plot
+          data={[
+            {
+              x: xValues,
+              y: yValues,
+              type: 'scatter',
+              mode: 'lines+markers',
+              marker: { color: 'red' },
+            },
+          ]}
+          layout={layout}
+        />
+      ) : (
+        <p>Loading temperature data...</p>
+      )}
+    </div>
 	</>
 );
 };
