@@ -81,8 +81,8 @@ useEffect(() => {
     fetchData2();
   }, []); // The empty dependencies array means this effect runs only once after the initial render
   // Extract x and y values for the plot
-  const xValues = [25.34, 25.82, 26.57, 25.89, 26.12, 25.33, 25.49, 26.18, 26.49, 26.29];
-  const yValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const yValues = [25.34, 25.82, 26.57, 25.89, 26.12, 25.33, 25.49, 26.18, 26.49, 26.29];
+  const xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // Define the layout for the Plotly chart
   const layout = {
